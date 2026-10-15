@@ -1,4 +1,4 @@
-import pokedex from "../pokedex.json" assert { type: "json" };
+import pokedex from "../pokedex.json" with { type: "json" };
 
 export const getAllPokemon = (req, res) => {
   res.json(pokedex);

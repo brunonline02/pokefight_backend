@@ -12,12 +12,13 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(
   cors({
-    origin: "https://dynamic-dieffenbachia-57e9ac.netlify.app",
-    // origin: "http://localhost:5173",
+    origin: [
+      "https://dynamic-dieffenbachia-57e9ac.netlify.app",
+      // "http://localhost:5173",
+    ],
     credentials: true,
-  })
+  }),
 );
-app.options("*", cors());
 
 // Use the Pokemon router for all routes starting with /pokemon
 app.use("/pokemon", pokemonRouter);

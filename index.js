@@ -8,6 +8,12 @@ dotenv.config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  console.log("Request received:", req.method, req.url);
+  console.log("Origin:", req.headers.origin);
+  next();
+});
+
 app.use(
   cors({
     origin: "https://dynamic-dieffenbachia-57e9ac.netlify.app",

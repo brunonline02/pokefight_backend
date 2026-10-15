@@ -8,12 +8,8 @@ dotenv.config();
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("Request received:", req.method, req.url);
-  console.log("Origin:", req.headers.origin);
-  next();
-});
-
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 app.use(
   cors({
     origin: "https://dynamic-dieffenbachia-57e9ac.netlify.app",
@@ -21,8 +17,10 @@ app.use(
     credentials: true,
   }),
 );
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(bodyparser.json());
+
+app.get("/", (req, res) => {
+  res.json({ status: "Backend is alive and healthy!" });
+});
 
 // Use the Pokemon router for all routes starting with /pokemon
 app.use("/pokemon", pokemonRouter);
